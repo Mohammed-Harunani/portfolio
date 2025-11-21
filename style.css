@@ -1,0 +1,275 @@
+/* ========== GLOBAL RESET ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Smooth scroll between sections */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ========== LIGHT & DARK THEMES ========== */
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f5f7fb;
+  --text: #222222;
+  --card: #ffffff;
+  --primary: #0077ff;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] {
+  --bg: #050608;
+  --bg-alt: #101218;
+  --text: #f5f5f5;
+  --card: #141821;
+  --primary: #4ea1ff;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* ========== GENERAL PAGE STYLING ========== */
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Sections share same max width */
+.section,
+.hero {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+/* ========== NAVBAR ========== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 30px;
+  background: var(--card);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  box-shadow: var(--shadow);
+}
+
+.navbar .logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.navbar nav {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 14px;
+  position: relative;
+}
+
+/* Little underline on hover */
+.navbar nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.2s ease;
+}
+
+.navbar nav a:hover::after {
+  width: 100%;
+}
+
+#themeToggle {
+  background: var(--primary);
+  border: none;
+  color: white;
+  padding: 9px 12px;
+  cursor: pointer;
+  border-radius: 999px;
+  font-size: 14px;
+  box-shadow: var(--shadow);
+}
+
+/* ========== HERO SECTION ========== */
+.hero {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.hero-text {
+  text-align: center;
+  padding: 40px 30px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--bg-alt), var(--card));
+  box-shadow: var(--shadow);
+}
+
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.hero h1 span {
+  color: var(--primary);
+}
+
+.hero h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.hero-buttons {
+  margin-top: 22px;
+}
+
+/* ========== BUTTONS ========== */
+.btn {
+  padding: 11px 22px;
+  border-radius: 999px;
+  border: none;
+  text-decoration: none;
+  color: white;
+  background: #555;
+  margin: 5px;
+  display: inline-block;
+  font-size: 14px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  box-shadow: var(--shadow);
+}
+
+.btn.primary {
+  background: var(--primary);
+}
+
+.btn.small {
+  padding: 9px 18px;
+  font-size: 13px;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* ========== SECTION TITLES ========== */
+.section h2 {
+  font-size: 26px;
+  margin-bottom: 16px;
+}
+
+/* ========== ABOUT SECTION ========== */
+#about p {
+  max-width: 800px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+/* ========== SKILLS GRID ========== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.skill-card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-3px);
+}
+
+/* ========== PROJECTS GRID ========== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.project-card {
+  background: var(--card);
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+}
+
+.project-card p {
+  line-height: 1.6;
+}
+
+.project-card ul {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  padding-left: 20px;
+}
+
+/* ========== CONTACT ========== */
+.contact-list {
+  list-style: none;
+  margin-top: 10px;
+}
+
+.contact-list li {
+  margin: 6px 0;
+}
+
+/* ========== FOOTER ========== */
+footer {
+  text-align: center;
+  padding: 18px;
+  background: var(--bg-alt);
+  margin-top: 40px;
+  font-size: 13px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 14px 16px;
+  }
+
+  .navbar nav {
+    gap: 10px;
+  }
+
+  .hero-text {
+    padding: 30px 18px;
+  }
+
+  .hero h1 {
+    font-size: 26px;
+  }
+
+  .hero h2 {
+    font-size: 18px;
+  }
+}

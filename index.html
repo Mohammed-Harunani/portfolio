@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohammed Harunani | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">MSH</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button id="themeToggle">🌙</button>
+  </header>
+
+  <main>
+    <!-- Hero / Home -->
+    <section id="home" class="section hero">
+      <div class="hero-text">
+        <h1>Hi, I'm <span>Mohammed Saleh Harunani</span></h1>
+        <h2>Intermediate Software Developer</h2>
+        <p>
+          I build clean, scalable, and user-focused web applications – from
+          research tools to real-time fleet management systems.
+        </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn primary">View Projects</a>
+          <a href="https://github.com/Mohammed-Harunani" target="_blank" class="btn">
+            GitHub Profile
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+      <h2>About Me</h2>
+      <p>
+        I'm an intermediate developer who enjoys turning ideas into real,
+        working products. I care about writing clean, readable code and building
+        tools that actually help people – especially in research and logistics.
+      </p>
+      <p>
+        Recently I've been working on projects like <strong>Scholarforge</strong>,
+        a helper for researchers, and <strong>Fleetify</strong>, a real-time
+        fleet management system for goods transportation.
+      </p>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Frontend</h3>
+          <ul>
+            <li>React</li>
+            <li>TypeScript</li>
+            <li>HTML / CSS</li>
+            <li>Vite</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Backend</h3>
+          <ul>
+            <li>Node.js &amp; Express</li>
+            <li>PHP (XAMPP)</li>
+            <li>REST APIs</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Databases & Tools</h3>
+          <ul>
+            <li>MySQL</li>
+            <li>Git &amp; GitHub</li>
+            <li>VS Code</li>
+            <li>Postman</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>Scholarforge</h3>
+          <p>
+            A web app that helps researchers break down complex work, deeply
+            analyze content, and turn it into concise and clear academic writing.
+          </p>
+          <ul>
+            <li>Deep research analysis</li>
+            <li>Summarization & clarity tools</li>
+            <li>Modern React + TypeScript frontend</li>
+          </ul>
+          <a
+            href="https://github.com/Mohammed-Harunani/Scholarforge"
+            target="_blank"
+            class="btn small"
+          >
+            View on GitHub
+          </a>
+        </div>
+
+        <div class="project-card">
+          <h3>Fleetify</h3>
+          <p>
+            A fleet management system where clients can book and track
+            transportation vehicles for their goods in real time, while
+            companies control commands and logistics.
+          </p>
+          <ul>
+            <li>Real-time vehicle tracking</li>
+            <li>Client booking system</li>
+            <li>Admin dashboard for companies</li>
+          </ul>
+          <a
+            href="https://github.com/Mohammed-Harunani/Fleetify"
+            target="_blank"
+            class="btn small"
+          >
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p>
+        Interested in working together or checking out my projects in more detail?
+        Feel free to reach out.
+      </p>
+      <ul class="contact-list">
+        <li>Email: <a href="mailto:mharunani.saleh@gmail.com">mharunani.saleh@gmail.com</a></li>
+        <li>GitHub: <a href="https://github.com/Mohammed-Harunani" target="_blank">
+          github.com/Mohammed-Harunani
+        </a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Mohammed Saleh Harunani. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
