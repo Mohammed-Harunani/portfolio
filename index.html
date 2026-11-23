@@ -1,239 +1,1226 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mohammed Harunani | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090D16">
+  <meta name="description" content="Mohammed Saleh Harunani — Financial Systems, Data Governance & FinTech Engineer. Core banking simulation, ledger integrity, financial messaging and migration assurance. Based in Greater London, UK.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mohammed Saleh Harunani | Financial Systems Engineer">
+  <meta property="og:description" content="Deterministic core banking simulation, financial data integrity and migration governance.">
+  <meta property="og:url" content="https://mohammed-harunani.github.io/portfolio/">
+  <title>Mohammed Saleh Harunani | Financial Systems Engineer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: "#090D16",
+            panel: "#0F172A",
+            edge: "#1E293B",
+            emerald: "#10B981",
+            sky: "#38BDF8",
+            muted: "#94A3B8"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+  <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #090D16;
+      color: #E2E8F0;
+      font-family: Inter, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::selection { background: #10B981; color: #090D16; }
+    html { scroll-padding-top: 90px; }
+    a, button { -webkit-tap-highlight-color: transparent; }
+    button { cursor: pointer; }
+    button:focus-visible, a:focus-visible {
+      outline: 2px solid #38BDF8;
+      outline-offset: 4px;
+    }
+    .surface {
+      background: #0F172A;
+      border: 1px solid #1E293B;
+      border-radius: 14px;
+    }
+    .surface-soft {
+      background: rgba(15,23,42,.65);
+      border: 1px solid #1E293B;
+      border-radius: 14px;
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(56,189,248,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(56,189,248,.025) 1px,transparent 1px);
+      background-size: 52px 52px;
+    }
+    .section-label {
+      color: #10B981;
+      font: 600 11px "JetBrains Mono",monospace;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .gradient-text {
+      background: linear-gradient(105deg,#F8FAFC 10%,#BAE6FD 58%,#34D399);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .button-primary {
+      background: #10B981;
+      color: #06150F;
+      font-weight: 700;
+      border-radius: 8px;
+      transition: background .2s,transform .2s;
+    }
+    .button-primary:hover {
+      background: #34D399;
+      transform: translateY(-2px);
+    }
+    .button-secondary {
+      background: #151E2E;
+      border: 1px solid #334155;
+      color: #E2E8F0;
+      border-radius: 8px;
+      transition: border-color .2s,background .2s;
+    }
+    .button-secondary:hover {
+      background: #1E293B;
+      border-color: #64748B;
+    }
+    .metric-value {
+      font: 700 clamp(24px,3vw,35px) "JetBrains Mono",monospace;
+      letter-spacing: -.06em;
+    }
+    .tab {
+      padding: 11px 15px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #94A3B8;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+    .tab.active {
+      color: #34D399;
+      border-color: #10B981;
+    }
+    .run-btn.active {
+      background: #064E3B;
+      color: #6EE7B7;
+      border-color: #059669;
+    }
+    .terminal {
+      background: #070C14;
+      border: 1px solid #1E293B;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .terminal pre {
+      overflow-x: auto;
+      white-space: pre;
+      tab-size: 2;
+      font: 12px/1.9 "JetBrains Mono",monospace;
+      color: #A5F3FC;
+      min-height: 185px;
+    }
+    .progress-track {
+      height: 7px;
+      background: #1E293B;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      border-radius: 99px;
+      transition: width .7s ease;
+    }
+    .project-card {
+      transition: border-color .2s,transform .2s;
+    }
+    .project-card:hover {
+      border-color: #475569;
+      transform: translateY(-3px);
+    }
+    .tag {
+      display: inline-flex;
+      padding: 5px 9px;
+      border: 1px solid #263548;
+      background: #111E2D;
+      border-radius: 5px;
+      font: 500 10px "JetBrains Mono",monospace;
+      color: #CBD5E1;
+    }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 30px 25px;
+      border-left: 1px solid #334155;
+    }
+    .timeline-item:last-child { border-left-color: transparent; }
+    .timeline-item:before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: -5px;
+      height: 9px;
+      width: 9px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 0 4px #064E3B;
+    }
+    .nav-link:hover { color: #34D399; }
+    .mobile-menu[hidden] { display: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *:before, *:after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <header class="navbar">
-    <div class="logo">MSH</div>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#highlights">Highlights</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-emerald focus:text-black focus:p-3">
+    Skip to content
+  </a>
+
+  <!-- Navigation -->
+  <header class="fixed top-0 inset-x-0 z-40 bg-[#090D16]/95 backdrop-blur-xl border-b border-edge">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 h-[70px] flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3" aria-label="Mohammed Harunani, home">
+        <span class="w-9 h-9 rounded-lg bg-emerald text-[#06150F] flex items-center justify-center font-extrabold text-sm">MH</span>
+        <span class="hidden sm:block text-sm font-bold tracking-tight text-white">
+          MOHAMMED HARUNANI<span class="text-emerald">.</span>
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-7 text-xs font-semibold text-slate-400" aria-label="Main navigation">
+        <a class="nav-link" href="#systems">Systems</a>
+        <a class="nav-link" href="#sandbox">Live Sandbox</a>
+        <a class="nav-link" href="#experience">Experience</a>
+        <a class="nav-link" href="#expertise">Expertise</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <span class="hidden md:inline-flex items-center gap-2 text-[11px] text-emerald font-mono">
+          <span class="w-2 h-2 rounded-full bg-emerald"></span>
+          AVAILABLE FOR OPPORTUNITIES
+        </span>
+        <a href="mailto:mharunani.saleh@gmail.com" class="hidden sm:inline-flex button-secondary px-4 py-2 text-xs font-semibold">
+          Get in touch
+        </a>
+        <button id="menuToggle" class="lg:hidden p-2 text-slate-300" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobileMenu">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+    <nav id="mobileMenu" class="mobile-menu lg:hidden px-6 pb-5 border-t border-edge bg-canvas" aria-label="Mobile navigation" hidden>
+      <div class="flex flex-col gap-4 pt-5 text-sm text-slate-300">
+        <a href="#systems">Systems</a>
+        <a href="#sandbox">Live Sandbox</a>
+        <a href="#experience">Experience</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#contact">Contact</a>
+      </div>
     </nav>
-    <button id="themeToggle">🌙</button>
   </header>
 
-  <main>
-    <!-- Hero / Home -->
-    <section id="home" class="section hero">
-      <div class="hero-text">
-        <h1>Hi, I'm <span>Mohammed Saleh Harunani</span></h1>
-        <h2>Intermediate Software Developer</h2>
-        <p>
-          I build clean, scalable, and user-focused web applications — from research tools
-          to real-time fleet management systems.
+  <main id="main">
+
+    <!-- Hero -->
+    <section id="home" class="grid-bg relative pt-40 pb-24 md:pt-48 md:pb-32 border-b border-edge">
+      <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <div class="max-w-5xl">
+
+          <div class="inline-flex flex-wrap items-center gap-2 px-3 py-2 rounded-md border border-emerald/30 bg-emerald/5 text-[10px] md:text-xs font-mono text-emerald mb-9">
+            <span class="w-2 h-2 rounded-full bg-emerald"></span>
+            FULL UK RIGHT TO WORK · NO SPONSORSHIP · GREATER LONDON · AVAILABLE IMMEDIATELY
+          </div>
+
+          <p class="section-label mb-5">FINANCIAL SYSTEMS / DATA INTEGRITY / ENGINEERING</p>
+
+          <h1 class="text-5xl md:text-7xl lg:text-[82px] font-extrabold leading-[1.08] tracking-[-.055em] text-white mb-7">
+            Engineering trust<br>
+            <span class="gradient-text">into financial data.</span>
+          </h1>
+
+          <h2 class="text-xl md:text-2xl font-semibold text-slate-200 mb-6">
+            Mohammed Saleh Harunani
+          </h2>
+
+          <p class="text-lg text-sky font-medium mb-5">
+            Financial Systems, Data Governance & FinTech Engineer
+          </p>
+
+          <p class="max-w-3xl text-slate-400 text-base md:text-lg leading-relaxed">
+            I architect deterministic core banking simulators, data migration integrity pipelines,
+            and double-entry reconciliation systems — bridging hands-on UK payroll and ERP accounting
+            with high-throughput Go and Python engineering.
+          </p>
+
+          <div class="flex flex-wrap gap-3 mt-10">
+            <a href="#systems" class="button-primary px-6 py-3.5 text-sm inline-flex items-center gap-2">
+              Explore Flagship Systems <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+            <a href="https://github.com/Mohammed-Harunani" target="_blank" rel="noopener noreferrer" class="button-secondary px-5 py-3.5 text-sm">
+              GitHub (@Mohammed-Harunani)
+            </a>
+            <a href="https://www.linkedin.com/in/mohammedharunani-saleh" target="_blank" rel="noopener noreferrer" class="button-secondary px-5 py-3.5 text-sm">
+              LinkedIn
+            </a>
+            <a href="./Mohammed_Saleh_Harunani_CV.pdf" download class="button-secondary px-5 py-3.5 text-sm inline-flex items-center gap-2">
+              <i data-lucide="download" class="w-4 h-4"></i> Download CV
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics -->
+    <section id="metrics" class="py-20 border-b border-edge">
+      <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+          <div>
+            <p class="section-label mb-3">01 / PERFORMANCE EVIDENCE</p>
+            <h2 class="text-3xl font-bold tracking-tight text-white">Measured engineering outcomes.</h2>
+          </div>
+          <p class="text-xs text-slate-500 font-mono">PROJECT-REPORTED RESULTS · SEE REPOSITORIES FOR EVIDENCE</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="surface p-6">
+            <p class="text-xs text-slate-400 mb-5">Deterministic Journal Throughput</p>
+            <p class="metric-value text-white">50,057<span class="text-sm text-slate-400">/sec</span></p>
+            <div class="mt-5 pt-4 border-t border-edge flex items-center gap-2 text-xs text-emerald font-mono">
+              <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+              £0.00 trial-balance drift
+            </div>
+          </div>
+
+          <div class="surface p-6">
+            <p class="text-xs text-slate-400 mb-5">Chaos Mutation Defect Detection</p>
+            <p class="metric-value text-emerald">91.03%</p>
+            <div class="mt-5 pt-4 border-t border-edge text-xs text-slate-400 font-mono">
+              vs 23.72% baseline
+            </div>
+          </div>
+
+          <div class="surface p-6">
+            <p class="text-xs text-slate-400 mb-5">Manual ERP Ledger Corrections</p>
+            <p class="metric-value text-white">~30%</p>
+            <div class="mt-5 pt-4 border-t border-edge text-xs text-slate-400 font-mono">
+              Reported reduction · Tronic Ltd
+            </div>
+          </div>
+
+          <div class="surface p-6">
+            <p class="text-xs text-slate-400 mb-5">Financial Messaging Formats</p>
+            <p class="metric-value text-sky">03</p>
+            <div class="mt-5 pt-4 border-t border-edge text-xs text-slate-400 font-mono">
+              ISO 20022 · ISO 8583 · EBCDIC
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-5 text-xs text-slate-500 leading-relaxed">
+          SSFD-Engine throughput, discrepancy and mutation figures describe reported benchmark runs,
+          not production guarantees. Format support does not imply universal standards certification.
+          Validation evidence and scope should be reviewed in the project repository.
+        </p>
+      </div>
+    </section>
+
+    <!-- Interactive Sandbox -->
+    <section id="sandbox" class="py-24 bg-[#0B111C] border-b border-edge">
+      <div class="max-w-7xl mx-auto px-5 md:px-8">
+
+        <div class="mb-10">
+          <p class="section-label mb-3">02 / INTERACTIVE ENGINEERING DEMONSTRATION</p>
+          <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+            Live Architecture & Chaos Sandbox
+          </h2>
+          <p class="text-slate-400 max-w-3xl leading-relaxed">
+            Explore how a deterministic ledger maintains accounting invariants under normal and adversarial conditions.
+            Switch scenarios and inspect representative financial messaging formats.
+          </p>
+          <p class="text-xs text-amber-300/90 font-mono mt-4">
+            BROWSER DEMO · ILLUSTRATIVE FIXTURES · NOT A LIVE GO ENGINE OR REAL BANKING DATA
+          </p>
+        </div>
+
+        <div class="surface overflow-hidden">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 px-6 py-5 border-b border-edge">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-lg bg-emerald/10 flex items-center justify-center text-emerald">
+                <i data-lucide="terminal-square" class="w-5 h-5"></i>
+              </span>
+              <div>
+                <p class="font-semibold text-sm text-white">SSFD-ENGINE / SIMULATION CONSOLE</p>
+                <p class="font-mono text-[10px] text-slate-500 mt-1">SCENARIO VIEWER · DETERMINISTIC EXAMPLE DATA</p>
+              </div>
+            </div>
+            <span id="runStatus" class="text-xs font-mono text-emerald flex items-center gap-2" aria-live="polite">
+              <span class="w-2 h-2 rounded-full bg-emerald"></span>
+              BASELINE READY
+            </span>
+          </div>
+
+          <div class="p-5 md:p-7">
+            <div class="flex flex-wrap gap-3 mb-8" role="group" aria-label="Simulation scenario">
+              <button id="baselineBtn" class="run-btn active button-secondary px-4 py-3 text-xs font-mono border" aria-pressed="true">
+                Baseline Run · Seed 42
+              </button>
+              <button id="chaosBtn" class="run-btn button-secondary px-4 py-3 text-xs font-mono border" aria-pressed="false">
+                Aggressive Chaos · 2,197 Faults
+              </button>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6">
+              <div class="space-y-6">
+
+                <div class="rounded-xl border border-edge bg-[#0A1220] p-5">
+                  <div class="flex items-center justify-between gap-3 mb-5">
+                    <h3 class="font-semibold text-sm text-white">Trial Balance Integrity</h3>
+                    <span class="text-[10px] text-emerald font-mono">BALANCED</span>
+                  </div>
+
+                  <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs min-w-[350px]">
+                      <thead class="text-slate-500 font-mono border-b border-edge">
+                        <tr>
+                          <th class="py-3">CCY</th>
+                          <th class="py-3 text-right">DEBITS</th>
+                          <th class="py-3 text-right">CREDITS</th>
+                          <th class="py-3 text-right">DRIFT</th>
+                        </tr>
+                      </thead>
+                      <tbody id="ledgerBody" class="font-mono text-slate-200"></tbody>
+                    </table>
+                  </div>
+
+                  <div class="flex flex-wrap items-center justify-between gap-3 mt-5 pt-4 border-t border-edge">
+                    <span class="text-xs text-slate-400">Double-entry invariant</span>
+                    <span class="font-mono text-xs text-emerald">Σ DEBITS = Σ CREDITS</span>
+                  </div>
+                </div>
+
+                <div class="rounded-xl border border-edge bg-[#0A1220] p-5">
+                  <h3 class="font-semibold text-sm text-white mb-5">Mutation Defect Detection</h3>
+
+                  <div class="space-y-5">
+                    <div>
+                      <div class="flex justify-between text-xs mb-2">
+                        <span class="text-slate-400">Naive baseline</span>
+                        <span class="font-mono text-white">23.72%</span>
+                      </div>
+                      <div class="progress-track">
+                        <div id="naiveBar" class="progress-fill bg-slate-500"></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="flex justify-between text-xs mb-2">
+                        <span class="text-slate-400">SSFD chaos evaluation</span>
+                        <span class="font-mono text-emerald">91.03%</span>
+                      </div>
+                      <div class="progress-track">
+                        <div id="chaosBar" class="progress-fill bg-emerald"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="text-[11px] text-slate-500 mt-5">
+                    Reported comparison from the project evaluation; bars are visual representations of those results.
+                  </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="rounded-lg border border-edge bg-[#0A1220] p-4">
+                    <p class="text-[10px] text-slate-500 font-mono mb-3">FAULTS IN SCENARIO</p>
+                    <p id="faultCount" class="font-mono text-xl md:text-2xl text-white font-bold">0</p>
+                  </div>
+                  <div class="rounded-lg border border-edge bg-[#0A1220] p-4">
+                    <p class="text-[10px] text-slate-500 font-mono mb-3">LEDGER DISCREPANCY</p>
+                    <p class="font-mono text-xl md:text-2xl text-emerald font-bold">0.00</p>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="flex flex-col min-w-0">
+                <div class="terminal flex-1">
+                  <div class="flex items-center justify-between px-4 py-3 border-b border-edge">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2.5 h-2.5 bg-red-400/70 rounded-full"></span>
+                      <span class="w-2.5 h-2.5 bg-amber-400/70 rounded-full"></span>
+                      <span class="w-2.5 h-2.5 bg-emerald/70 rounded-full"></span>
+                      <span class="ml-3 text-[10px] font-mono text-slate-500">FINANCIAL OUTPUT INSPECTOR</span>
+                    </div>
+                    <button id="copyOutput" class="flex items-center gap-2 text-xs text-slate-300 hover:text-white" aria-label="Copy protocol output">
+                      <i data-lucide="copy" class="w-4 h-4"></i> Copy
+                    </button>
+                  </div>
+
+                  <div class="flex overflow-x-auto border-b border-edge" role="tablist" aria-label="Financial protocol format">
+                    <button class="tab active" id="tab-iso20022" role="tab" aria-selected="true" aria-controls="protocolPanel" data-format="iso20022">ISO 20022</button>
+                    <button class="tab" id="tab-iso8583" role="tab" aria-selected="false" aria-controls="protocolPanel" data-format="iso8583">ISO 8583</button>
+                    <button class="tab" id="tab-ebcdic" role="tab" aria-selected="false" aria-controls="protocolPanel" data-format="ebcdic">IBM EBCDIC</button>
+                  </div>
+
+                  <div id="protocolPanel" role="tabpanel" aria-labelledby="tab-iso20022" class="p-5">
+                    <p id="formatLabel" class="text-[10px] text-slate-500 font-mono mb-4">pain.001.001.09 · ILLUSTRATIVE XML FRAGMENT</p>
+                    <pre id="protocolOutput" aria-live="polite"></pre>
+                  </div>
+                </div>
+
+                <div class="mt-4 rounded-lg border border-edge bg-[#0A1220] px-5 py-4">
+                  <p class="text-xs text-slate-400 leading-relaxed" id="scenarioDescription">
+                    Baseline fixture: seeded transaction flow with balanced debit and credit postings.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-7 pt-5 border-t border-edge flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <p class="text-xs text-slate-500">
+                This interactive preview runs locally in your browser and uses fixed illustrative values.
+              </p>
+              <a href="https://github.com/Mohammed-Harunani/ssfd-engine" target="_blank" rel="noopener noreferrer" class="text-xs text-sky hover:underline font-semibold inline-flex items-center gap-2">
+                Inspect actual Go implementation
+                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Systems -->
+    <section id="systems" class="py-24 border-b border-edge">
+      <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <p class="section-label mb-3">03 / SELECTED ENGINEERING WORK</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+          Systems built around correctness.
+        </h2>
+        <p class="text-slate-400 max-w-3xl mb-10 leading-relaxed">
+          Selected financial engineering, data governance, full-stack development and business analysis work.
+          Each project links to its public documentation.
         </p>
 
-        <div class="hero-buttons">
-          <a href="#projects" class="btn primary">View Projects</a>
-          <a href="https://github.com/Mohammed-Harunani" target="_blank" class="btn">GitHub</a>
+        <div class="grid lg:grid-cols-2 gap-5">
 
-          <!-- Optional: add your LinkedIn + Resume links -->
-          <a href="#" target="_blank" class="btn">LinkedIn</a>
-          <a href="#" target="_blank" class="btn">Resume</a>
+          <article class="surface project-card p-7 md:p-9 lg:col-span-2">
+            <div class="flex flex-wrap justify-between items-start gap-4 mb-8">
+              <span class="tag !text-emerald !border-emerald/30">FLAGSHIP · PUBLIC REPOSITORY</span>
+              <span class="font-mono text-xs text-slate-500">01 / GO · CORE BANKING</span>
+            </div>
+            <div class="grid lg:grid-cols-[1.4fr_1fr] gap-10">
+              <div>
+                <div class="w-12 h-12 rounded-xl bg-emerald/10 flex items-center justify-center text-emerald mb-6">
+                  <i data-lucide="landmark" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-3xl font-bold text-white tracking-tight mb-4">
+                  SSFD-Engine
+                </h3>
+                <p class="text-sky font-medium text-sm mb-5">
+                  Deterministic Core Banking & Chaos Simulation Engine
+                </p>
+                <p class="text-slate-400 leading-relaxed mb-6">
+                  A Go-based financial simulation and validation engine using deterministic PRNG-driven
+                  activity, virtual time, and integer minor-unit double-entry accounting.
+                  Designed to reproduce banking edge cases and expose defects without real customer data.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-7">
+                  <span class="tag">GOLANG</span>
+                  <span class="tag">XOSHIRO256**</span>
+                  <span class="tag">DOUBLE ENTRY</span>
+                  <span class="tag">ISO 20022</span>
+                  <span class="tag">ISO 8583</span>
+                  <span class="tag">EBCDIC</span>
+                  <span class="tag">CHAOS TESTING</span>
+                </div>
+                <a href="https://github.com/Mohammed-Harunani/ssfd-engine" target="_blank" rel="noopener noreferrer" class="button-primary inline-flex items-center gap-2 px-5 py-3 text-xs">
+                  View Source & Documentation
+                  <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+              <div class="rounded-xl border border-edge bg-[#080F1A] p-6 font-mono">
+                <p class="text-[10px] text-slate-500 mb-7">EVALUATION SNAPSHOT</p>
+                <div class="space-y-6">
+                  <div class="flex justify-between items-center gap-3 border-b border-edge pb-4">
+                    <span class="text-xs text-slate-400">Throughput</span>
+                    <span class="text-sky font-bold text-sm">50,057/s</span>
+                  </div>
+                  <div class="flex justify-between items-center gap-3 border-b border-edge pb-4">
+                    <span class="text-xs text-slate-400">Trial Balance Drift</span>
+                    <span class="text-emerald font-bold text-sm">£0.00</span>
+                  </div>
+                  <div class="flex justify-between items-center gap-3 border-b border-edge pb-4">
+                    <span class="text-xs text-slate-400">Defect Detection</span>
+                    <span class="text-emerald font-bold text-sm">91.03%</span>
+                  </div>
+                  <div class="flex justify-between items-center gap-3">
+                    <span class="text-xs text-slate-400">Architecture</span>
+                    <span class="text-white font-bold text-xs">DETERMINISTIC</span>
+                  </div>
+                </div>
+                <p class="text-[10px] text-slate-500 mt-8 leading-relaxed">
+                  Project-reported benchmark results under a defined test configuration.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="surface project-card p-7 md:p-8">
+            <div class="flex justify-between items-start gap-3 mb-7">
+              <span class="tag !text-sky">FLAGSHIP · IN DEVELOPMENT</span>
+              <i data-lucide="database-zap" class="w-6 h-6 text-sky"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-3">Project Aegis</h3>
+            <p class="text-sm text-sky mb-5">Data Migration Integrity & Governance Pipeline</p>
+            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+              An evolving data migration assurance architecture focused on source identity,
+              SHA-256 lineage evidence, immutable snapshot concepts, schema drift detection,
+              and controlled repair workflows.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-7">
+              <span class="tag">DATA LINEAGE</span>
+              <span class="tag">SHA-256</span>
+              <span class="tag">SCHEMA DRIFT</span>
+              <span class="tag">RECONCILIATION</span>
+            </div>
+            <a href="https://github.com/Mohammed-Harunani/project-aegis" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-sky hover:underline inline-flex items-center gap-2">
+              Explore Architecture <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+          </article>
+
+          <article class="surface project-card p-7 md:p-8">
+            <div class="flex justify-between items-start gap-3 mb-7">
+              <span class="tag">FULL-STACK · LOGISTICS</span>
+              <i data-lucide="truck" class="w-6 h-6 text-sky"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-3">Fleetify</h3>
+            <p class="text-sm text-sky mb-5">Fleet Management & Booking System</p>
+            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+              Logistics platform for goods transportation bookings, real-time vehicle
+              tracking workflows and operational management through an administrative control dashboard.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-7">
+              <span class="tag">PHP</span>
+              <span class="tag">MYSQL</span>
+              <span class="tag">JAVASCRIPT</span>
+              <span class="tag">OPERATIONS</span>
+            </div>
+            <a href="https://github.com/Mohammed-Harunani/Fleetify" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-sky hover:underline inline-flex items-center gap-2">
+              View Repository <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+          </article>
+
+          <article class="surface project-card p-7 md:p-8">
+            <div class="flex justify-between items-start gap-3 mb-7">
+              <span class="tag">FINTECH · BUSINESS ANALYSIS</span>
+              <i data-lucide="workflow" class="w-6 h-6 text-sky"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-3">Retail Banking Loan Approval</h3>
+            <p class="text-sm text-sky mb-5">Process Improvement Case Study</p>
+            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+              AS-IS and TO-BE process mapping, root-cause bottleneck analysis,
+              functional requirements and a proposed digital workflow to reduce
+              loan approval delays and manual processing friction.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-7">
+              <span class="tag">BUSINESS ANALYSIS</span>
+              <span class="tag">BRD</span>
+              <span class="tag">PROCESS MAPPING</span>
+            </div>
+            <a href="https://github.com/Mohammed-Harunani/ba-loan-approval-case-study" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-sky hover:underline inline-flex items-center gap-2">
+              Read Case Study <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+          </article>
+
+          <article class="surface project-card p-7 md:p-8">
+            <div class="flex justify-between items-start gap-3 mb-7">
+              <span class="tag">RESEARCH · FULL-STACK</span>
+              <i data-lucide="book-open" class="w-6 h-6 text-sky"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-3">ScholarForge</h3>
+            <p class="text-sm text-sky mb-5">Research Workflow & Analysis Platform</p>
+            <p class="text-sm text-slate-400 leading-relaxed mb-6">
+              A structured academic research workspace combining content analysis,
+              writing assistance and interactive visualisation to help researchers
+              work more clearly and efficiently.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-7">
+              <span class="tag">REACT</span>
+              <span class="tag">TYPESCRIPT</span>
+              <span class="tag">NODE.JS</span>
+              <span class="tag">PYTHON</span>
+            </div>
+            <a href="https://github.com/Mohammed-Harunani/Scholarforge" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-sky hover:underline inline-flex items-center gap-2">
+              View Repository <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+          </article>
+
         </div>
+      </div>
+    </section>
 
-        <p style="margin-top: 16px; font-size: 14px; opacity: 0.9;">
-          ✅ Open to opportunities • Full-stack projects • Strong problem-solving
+    <!-- Experience -->
+    <section id="experience" class="py-24 bg-[#0B111C] border-b border-edge">
+      <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <p class="section-label mb-3">04 / DOMAIN EXPERIENCE</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+          Engineering informed by operations.
+        </h2>
+        <p class="text-slate-400 max-w-3xl mb-12 leading-relaxed">
+          Combining software development with financial operations, reconciliation,
+          ERP workflows and business process analysis.
         </p>
-      </div>
-    </section>
 
-    <!-- Highlights (Recruiter-friendly quick scan section) -->
-    <section id="highlights" class="section">
-      <h2>Highlights</h2>
-      <p style="max-width: 850px; line-height: 1.7;">
-        A quick overview of what I can bring to a team: building full-stack apps, improving user experience,
-        and delivering practical solutions with clean, maintainable code.
-      </p>
+        <div class="grid lg:grid-cols-[1.5fr_1fr] gap-12">
+          <div class="pl-2">
 
-      <div class="skills-grid" style="margin-top: 18px;">
-        <div class="skill-card">
-          <h3>Full-Stack Delivery</h3>
-          <ul>
-            <li>Frontend + backend integration</li>
-            <li>REST APIs & data flow</li>
-            <li>Structured, maintainable code</li>
-          </ul>
-        </div>
+            <div class="timeline-item">
+              <p class="text-[11px] text-emerald font-mono mb-2">2026 — PRESENT</p>
+              <h3 class="font-bold text-white text-lg">Payroll & Accounts Trainee (Voluntary)</h3>
+              <p class="text-sm text-sky mt-1 mb-3">Mountsides Accounts Ltd · Greater London</p>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Sage 50 Payroll, HMRC Real Time Information, NEST pension administration,
+                Xero and period-end journal reconciliation.
+              </p>
+            </div>
 
-        <div class="skill-card">
-          <h3>Real Projects</h3>
-          <ul>
-            <li>Scholarforge — research workflow support</li>
-            <li>Fleetify — real-time fleet management</li>
-            <li>Business Analysis case study (banking)</li>
-          </ul>
-        </div>
+            <div class="timeline-item">
+              <p class="text-[11px] text-emerald font-mono mb-2">OCT 2025 — JAN 2026</p>
+              <h3 class="font-bold text-white text-lg">Stock Assistant (Contract)</h3>
+              <p class="text-sm text-sky mt-1 mb-3">Sainsbury's · Alperton, London</p>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Physical-to-system inventory reconciliation, stock accuracy,
+                operational controls and margin-related checks.
+              </p>
+            </div>
 
-        <div class="skill-card">
-          <h3>Strengths</h3>
-          <ul>
-            <li>Problem-solving & analysis</li>
-            <li>Clear communication</li>
-            <li>Fast learner, strong work ethic</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+            <div class="timeline-item">
+              <p class="text-[11px] text-emerald font-mono mb-2">JAN 2024 — JUN 2025</p>
+              <h3 class="font-bold text-white text-lg">Executive Sales & Operations Analyst</h3>
+              <p class="text-sm text-sky mt-1 mb-3">Tronic Ltd</p>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Shopify/POS/SAP integration diagnostics, duplicate posting reconciliation,
+                reporting dashboards and operational governance improvements.
+                Reported outcomes included approximately 25% improvement in reporting
+                efficiency and 30% fewer manual ledger corrections.
+              </p>
+            </div>
 
-    <!-- About -->
-    <section id="about" class="section">
-      <h2>About Me</h2>
-      <p style="max-width: 900px; line-height: 1.7;">
-        I'm an intermediate developer who enjoys turning ideas into real, working products.
-        I care about writing clean, readable code and building tools that actually help people —
-        especially in research and logistics.
-      </p>
-      <p style="max-width: 900px; line-height: 1.7; margin-top: 10px;">
-        Recently I’ve built <strong>Scholarforge</strong>, a tool that helps researchers break down complex work
-        and analyze content deeply, and <strong>Fleetify</strong>, a system that supports booking and
-        <strong>real-time vehicle tracking</strong> for goods transportation.
-      </p>
-    </section>
+            <div class="timeline-item">
+              <p class="text-[11px] text-emerald font-mono mb-2">2021 — 2023</p>
+              <h3 class="font-bold text-white text-lg">BSc (Hons) Business Information Technology · 2:1</h3>
+              <p class="text-sm text-sky mt-1 mb-3">Kabarak University</p>
+              <p class="text-sm text-slate-400">
+                Additional professional learning: Coursera Business Analysis Certificate (2025).
+              </p>
+            </div>
 
-    <!-- Skills -->
-    <section id="skills" class="section">
-      <h2>Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <h3>Frontend</h3>
-          <ul>
-            <li>React</li>
-            <li>TypeScript</li>
-            <li>HTML / CSS</li>
-            <li>Vite</li>
-          </ul>
-        </div>
-        <div class="skill-card">
-          <h3>Backend</h3>
-          <ul>
-            <li>Node.js &amp; Express</li>
-            <li>PHP (XAMPP)</li>
-            <li>Python</li>
-            <li>REST APIs</li>
-          </ul>
-        </div>
-        <div class="skill-card">
-          <h3>Databases & Tools</h3>
-          <ul>
-            <li>MySQL</li>
-            <li>Git &amp; GitHub</li>
-            <li>VS Code</li>
-            <li>Postman</li>
-          </ul>
+          </div>
+
+          <aside class="surface p-7 h-fit">
+            <div class="flex items-center gap-3 mb-6">
+              <i data-lucide="shield-check" class="w-6 h-6 text-emerald"></i>
+              <h3 class="font-semibold text-white">Engineering Perspective</h3>
+            </div>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Financial systems are not just about transaction speed.
+              They must preserve integrity across ledgers, interfaces,
+              operational workflows and downstream reporting.
+            </p>
+            <div class="space-y-4 text-sm">
+              <div class="flex items-start gap-3">
+                <i data-lucide="check" class="w-4 h-4 text-emerald shrink-0 mt-1"></i>
+                <span>Accounting invariants and reconciliation</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <i data-lucide="check" class="w-4 h-4 text-emerald shrink-0 mt-1"></i>
+                <span>Reproducible testing and defect isolation</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <i data-lucide="check" class="w-4 h-4 text-emerald shrink-0 mt-1"></i>
+                <span>Data lineage and migration assurance</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <i data-lucide="check" class="w-4 h-4 text-emerald shrink-0 mt-1"></i>
+                <span>Operational finance and ERP integration</span>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-      <p style="max-width: 900px; line-height: 1.7; margin-bottom: 18px;">
-        These are selected projects that show my development skills and problem-solving approach.
-        Each project has clear documentation and can be reviewed on GitHub.
-      </p>
+    <!-- Technical Matrix -->
+    <section id="expertise" class="py-24 border-b border-edge">
+      <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <p class="section-label mb-3">05 / TECHNICAL CAPABILITIES</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+          Core stack & protocols.
+        </h2>
+        <p class="text-slate-400 mb-10 max-w-2xl">
+          Engineering tools, financial standards and operational domain knowledge.
+        </p>
 
-      <div class="projects-grid">
-        <!-- Scholarforge -->
-        <div class="project-card">
-          <h3>Scholarforge <span style="font-size:12px; opacity:0.8;">• Featured</span></h3>
-          <p>
-            A research-focused web app that helps scholars break down complex work,
-            deeply analyze content, and produce clear and concise writing.
-          </p>
-          <ul>
-            <li>Deep research analysis & clarity improvements</li>
-            <li>Modern React + TypeScript frontend</li>
-            <li>Backend support (Node/Python)</li>
-          </ul>
-          <a
-            href="https://github.com/Mohammed-Harunani/Scholarforge"
-            target="_blank"
-            class="btn small"
-          >
-            View on GitHub
-          </a>
-        </div>
+        <div class="grid md:grid-cols-2 gap-5">
 
-        <!-- Fleetify -->
-        <div class="project-card">
-          <h3>Fleetify <span style="font-size:12px; opacity:0.8;">• Featured</span></h3>
-          <p>
-            A fleet management system where clients can book transportation vehicles
-            and track shipments in real time, while companies control operations and logistics.
-          </p>
-          <ul>
-            <li>Real-time vehicle tracking</li>
-            <li>Client booking workflow</li>
-            <li>Admin dashboard for companies</li>
-          </ul>
-          <a
-            href="https://github.com/Mohammed-Harunani/Fleetify"
-            target="_blank"
-            class="btn small"
-          >
-            View on GitHub
-          </a>
-        </div>
+          <div class="surface p-7">
+            <div class="flex items-center gap-3 mb-6">
+              <i data-lucide="code-2" class="w-5 h-5 text-emerald"></i>
+              <h3 class="font-bold text-white">Core Engineering</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">GO / GOLANG</span>
+              <span class="tag">PYTHON</span>
+              <span class="tag">SQL / MYSQL</span>
+              <span class="tag">JAVASCRIPT</span>
+              <span class="tag">TYPESCRIPT</span>
+              <span class="tag">GIT</span>
+              <span class="tag">GITHUB ACTIONS</span>
+              <span class="tag">LINUX</span>
+            </div>
+          </div>
 
-        <!-- Case Study -->
-        <div class="project-card">
-          <h3>Loan Approval Delay (Case Study)</h3>
-          <p>
-            A Business Analysis case study focused on improving a retail bank’s loan approval process
-            by reducing turnaround time, delays, and rework.
-          </p>
-          <ul>
-            <li>AS-IS & TO-BE process analysis</li>
-            <li>Root cause identification</li>
-            <li>Business + functional requirements</li>
-            <li>Operational efficiency improvements</li>
-          </ul>
-          <a
-            href="https://github.com/Mohammed-Harunani/ba-loan-approval-case-study"
-            target="_blank"
-            class="btn small"
-          >
-            View Case Study
-          </a>
+          <div class="surface p-7">
+            <div class="flex items-center gap-3 mb-6">
+              <i data-lucide="network" class="w-5 h-5 text-sky"></i>
+              <h3 class="font-bold text-white">Financial Messaging & Ledgers</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">DOUBLE-ENTRY ACCOUNTING</span>
+              <span class="tag">ISO 20022</span>
+              <span class="tag">PAIN.001</span>
+              <span class="tag">CAMT.053</span>
+              <span class="tag">ISO 8583</span>
+              <span class="tag">IBM CP037 / CP500</span>
+              <span class="tag">MUTATION TESTING</span>
+              <span class="tag">CHAOS TESTING</span>
+            </div>
+          </div>
+
+          <div class="surface p-7">
+            <div class="flex items-center gap-3 mb-6">
+              <i data-lucide="calculator" class="w-5 h-5 text-emerald"></i>
+              <h3 class="font-bold text-white">ERP, Payroll & Finance</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">SAGE 50 PAYROLL</span>
+              <span class="tag">HMRC RTI</span>
+              <span class="tag">NEST</span>
+              <span class="tag">XERO</span>
+              <span class="tag">SAP</span>
+              <span class="tag">EXCEL VBA / MACROS</span>
+              <span class="tag">RECONCILIATION</span>
+            </div>
+          </div>
+
+          <div class="surface p-7">
+            <div class="flex items-center gap-3 mb-6">
+              <i data-lucide="git-branch" class="w-5 h-5 text-sky"></i>
+              <h3 class="font-bold text-white">Governance & Analysis</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">DATA LINEAGE</span>
+              <span class="tag">SCHEMA DRIFT</span>
+              <span class="tag">DATA QUALITY</span>
+              <span class="tag">BRD</span>
+              <span class="tag">AS-IS / TO-BE</span>
+              <span class="tag">PROCESS MODELLING</span>
+              <span class="tag">SALESFORCE CRM</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p style="max-width: 900px; line-height: 1.7;">
-        I’m open to internships and junior/intermediate roles. If you’d like to discuss opportunities or collaborate,
-        feel free to contact me.
-      </p>
+    <section id="contact" class="py-28 bg-[#0B111C]">
+      <div class="max-w-7xl mx-auto px-5 md:px-8">
+        <div class="surface p-8 md:p-14 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-52 h-px bg-emerald"></div>
+          <p class="section-label mb-6">06 / CONTACT & OPPORTUNITIES</p>
 
-      <ul class="contact-list" style="margin-top: 12px;">
-        <li>Email: <a href="mailto:mharunani.saleh@gmail.com">mharunani.saleh@gmail.com</a></li>
-        <li>GitHub: <a href="https://github.com/Mohammed-Harunani" target="_blank">github.com/Mohammed-Harunani</a></li>
-        <!-- Optional: add LinkedIn link -->
-        <li>LinkedIn: <a href="#" target="_blank">Add your LinkedIn link here</a></li>
-      </ul>
+          <h2 class="text-4xl md:text-6xl font-extrabold text-white tracking-[-.05em] leading-tight mb-6">
+            Let's build systems<br>
+            <span class="gradient-text">that can be trusted.</span>
+          </h2>
 
-      <div style="margin-top: 18px;">
-        <a href="mailto:mharunani.saleh@gmail.com" class="btn primary">Email Me</a>
-        <a href="https://github.com/Mohammed-Harunani" target="_blank" class="btn">View GitHub</a>
+          <p class="text-slate-400 max-w-2xl leading-relaxed mb-8">
+            Available immediately for UK FinTech engineering, financial systems,
+            data governance, reconciliation, technical analysis and relevant
+            consulting engagements.
+          </p>
+
+          <div class="flex flex-wrap gap-3 mb-10">
+            <button class="button-primary px-5 py-3 text-sm inline-flex items-center gap-2" data-copy="mharunani.saleh@gmail.com">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+              Copy Email
+            </button>
+            <a href="mailto:mharunani.saleh@gmail.com" class="button-secondary px-5 py-3 text-sm">
+              Send Email
+            </a>
+            <button class="button-secondary px-5 py-3 text-sm inline-flex items-center gap-2" data-copy="+447405998456">
+              <i data-lucide="phone" class="w-4 h-4"></i>
+              Copy Phone
+            </button>
+            <a href="./Mohammed_Saleh_Harunani_CV.pdf" download class="button-secondary px-5 py-3 text-sm">
+              Download CV
+            </a>
+          </div>
+
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-8 border-t border-edge">
+            <div>
+              <p class="text-[10px] font-mono text-slate-500 mb-2">EMAIL</p>
+              <a href="mailto:mharunani.saleh@gmail.com" class="text-xs text-slate-200 hover:text-emerald break-all">
+                mharunani.saleh@gmail.com
+              </a>
+            </div>
+            <div>
+              <p class="text-[10px] font-mono text-slate-500 mb-2">PHONE</p>
+              <a href="tel:+447405998456" class="text-xs text-slate-200 hover:text-emerald">
+                +44 7405 998 456
+              </a>
+            </div>
+            <div>
+              <p class="text-[10px] font-mono text-slate-500 mb-2">LINKEDIN</p>
+              <a href="https://www.linkedin.com/in/mohammedharunani-saleh" target="_blank" rel="noopener noreferrer" class="text-xs text-sky hover:underline">
+                Professional Profile ↗
+              </a>
+            </div>
+            <div>
+              <p class="text-[10px] font-mono text-slate-500 mb-2">GITHUB</p>
+              <a href="https://github.com/Mohammed-Harunani" target="_blank" rel="noopener noreferrer" class="text-xs text-sky hover:underline">
+                @Mohammed-Harunani ↗
+              </a>
+            </div>
+          </div>
+
+          <p class="text-xs font-mono text-emerald mt-9">
+            FULL RIGHT TO WORK IN THE UK · NO SPONSORSHIP REQUIRED
+          </p>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <p>© <span id="year"></span> Mohammed Saleh Harunani. All rights reserved.</p>
+  <!-- Footer -->
+  <footer class="border-t border-edge py-8">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 flex flex-col sm:flex-row justify-between gap-4">
+      <p class="text-xs text-slate-500">
+        © <span id="year"></span> Mohammed Saleh Harunani. All rights reserved.
+      </p>
+      <p class="text-[10px] text-slate-500 font-mono">
+        FINANCIAL SYSTEMS · DATA INTEGRITY · GREATER LONDON
+      </p>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Copy feedback -->
+  <div id="toast" role="status" aria-live="polite" class="fixed bottom-6 right-6 z-50 bg-[#064E3B] border border-emerald text-emerald-100 px-5 py-3 rounded-lg text-xs font-semibold shadow-xl opacity-0 pointer-events-none transition-opacity">
+    Copied to clipboard
+  </div>
+
+  <script>
+    "use strict";
+
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => [...document.querySelectorAll(selector)];
+
+    const state = {
+      scenario: "baseline",
+      format: "iso20022"
+    };
+
+    const scenarios = {
+      baseline: {
+        faults: 0,
+        status: "BASELINE READY",
+        description: "Baseline fixture: seeded transaction flow with balanced debit and credit postings.",
+        rows: [
+          ["GBP", "12,450,000.00", "12,450,000.00", "£0.00"],
+          ["USD", "8,750,000.00", "8,750,000.00", "$0.00"]
+        ]
+      },
+      chaos: {
+        faults: 2197,
+        status: "CHAOS SCENARIO LOADED",
+        description: "Illustrative aggressive chaos fixture: duplicate replay, clearing-order anomalies, reversals and timing collisions. Faults are not executed by this browser widget.",
+        rows: [
+          ["GBP", "18,975,420.00", "18,975,420.00", "£0.00"],
+          ["USD", "13,245,700.00", "13,245,700.00", "$0.00"]
+        ]
+      }
+    };
+
+    const outputs = {
+      baseline: {
+        iso20022: `<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.09">
+  <CstmrCdtTrfInitn>
+    <GrpHdr>
+      <MsgId>SSFD-SEED42-001</MsgId>
+      <CreDtTm>2026-01-15T10:00:00</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+      <CtrlSum>1250.00</CtrlSum>
+    </GrpHdr>
+    <!-- Illustrative fragment only -->
+  </CstmrCdtTrfInitn>
+</Document>`,
+        iso8583: `MTI: 0200
+PRIMARY BITMAP: 3220000000808000
+DE03 Processing Code: 000000
+DE04 Amount: 000000125000
+DE07 Transmission Date/Time: 0115100000
+DE11 STAN: 000042
+DE49 Currency: 826
+
+Example field listing, not a full
+binary ISO 8583 network message.`,
+        ebcdic: `IBM CP037 / EBCDIC EXAMPLE
+
+ASCII TEXT: SSFD42
+
+HEX BYTES:
+E2 E2 C6 C4 F4 F2
+
+TEXT: SSFD42
+
+Illustrative CP037 encoding.
+Not a complete fixed-width batch record.`
+      },
+      chaos: {
+        iso20022: `<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.09">
+  <CstmrCdtTrfInitn>
+    <GrpHdr>
+      <MsgId>SSFD-CHAOS-2197</MsgId>
+      <CreDtTm>2026-01-15T23:59:59</CreDtTm>
+      <NbOfTxs>1</NbOfTxs>
+      <CtrlSum>1250.00</CtrlSum>
+    </GrpHdr>
+    <!-- Illustrative chaos fixture -->
+  </CstmrCdtTrfInitn>
+</Document>`,
+        iso8583: `MTI: 0200
+PRIMARY BITMAP: 3220000000808000
+DE03 Processing Code: 000000
+DE04 Amount: 000000125000
+DE07 Transmission Date/Time: 0115235959
+DE11 STAN: 002197
+DE49 Currency: 826
+
+CHAOS FIXTURE:
+Duplicate/replay condition modelled.
+
+Example field listing only.`,
+        ebcdic: `IBM CP037 / EBCDIC EXAMPLE
+
+ASCII TEXT: CHAOS42
+
+HEX BYTES:
+C3 C8 C1 D6 E2 F4 F2
+
+TEXT: CHAOS42
+
+Illustrative CP037 encoding.
+Not a complete fixed-width batch record.`
+      }
+    };
+
+    const formatLabels = {
+      iso20022: "pain.001.001.09 · ILLUSTRATIVE XML FRAGMENT",
+      iso8583: "0200 · REPRESENTATIVE FIELD LISTING",
+      ebcdic: "IBM CP037 · ILLUSTRATIVE HEX ENCODING"
+    };
+
+    function renderLedger() {
+      const data = scenarios[state.scenario];
+
+      $("#ledgerBody").replaceChildren();
+
+      data.rows.forEach(([currency, debit, credit, drift]) => {
+        const tr = document.createElement("tr");
+        tr.className = "border-b border-edge/60";
+
+        [currency, debit, credit, drift].forEach((value, index) => {
+          const td = document.createElement("td");
+          td.className = "py-4 " +
+            (index === 0 ? "text-sky" : "text-right") +
+            (index === 3 ? " text-emerald" : "");
+          td.textContent = value;
+          tr.appendChild(td);
+        });
+
+        $("#ledgerBody").appendChild(tr);
+      });
+
+      $("#faultCount").textContent = data.faults.toLocaleString("en-GB");
+      $("#scenarioDescription").textContent = data.description;
+      $("#runStatus").innerHTML =
+        '<span class="w-2 h-2 rounded-full bg-emerald"></span>' +
+        data.status;
+
+      ["baseline", "chaos"].forEach((scenario) => {
+        const button = $("#" + scenario + "Btn");
+        const active = state.scenario === scenario;
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+
+      $("#naiveBar").style.width = "23.72%";
+      $("#chaosBar").style.width = "91.03%";
+    }
+
+    function renderProtocol() {
+      $("#protocolOutput").textContent =
+        outputs[state.scenario][state.format];
+
+      $("#formatLabel").textContent = formatLabels[state.format];
+
+      $$(".tab").forEach((tab) => {
+        const active = tab.dataset.format === state.format;
+        tab.classList.toggle("active", active);
+        tab.setAttribute("aria-selected", String(active));
+        tab.tabIndex = active ? 0 : -1;
+      });
+
+      $("#protocolPanel").setAttribute(
+        "aria-labelledby",
+        "tab-" + state.format
+      );
+    }
+
+    function setScenario(scenario) {
+      state.scenario = scenario;
+      renderLedger();
+      renderProtocol();
+    }
+
+    $("#baselineBtn").addEventListener("click", () => {
+      setScenario("baseline");
+    });
+
+    $("#chaosBtn").addEventListener("click", () => {
+      setScenario("chaos");
+    });
+
+    $$(".tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        state.format = tab.dataset.format;
+        renderProtocol();
+      });
+
+      tab.addEventListener("keydown", (event) => {
+        if (!["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+
+        event.preventDefault();
+        const tabs = $$(".tab");
+        const index = tabs.indexOf(tab);
+        const next = event.key === "ArrowRight"
+          ? (index + 1) % tabs.length
+          : (index - 1 + tabs.length) % tabs.length;
+
+        tabs[next].focus();
+        tabs[next].click();
+      });
+    });
+
+    let toastTimeout;
+
+    function showToast(message) {
+      const toast = $("#toast");
+      toast.textContent = message;
+      toast.classList.remove("opacity-0");
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add("opacity-0");
+      }, 2200);
+    }
+
+    async function copyText(value) {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(value);
+        } else {
+          const textarea = document.createElement("textarea");
+          textarea.value = value;
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+
+          const successful = document.execCommand("copy");
+          textarea.remove();
+
+          if (!successful) throw new Error("Copy failed");
+        }
+        showToast("Copied to clipboard");
+      } catch (error) {
+        showToast("Copy unavailable — please select and copy manually");
+      }
+    }
+
+    $("#copyOutput").addEventListener("click", () => {
+      copyText(outputs[state.scenario][state.format]);
+    });
+
+    $$("[data-copy]").forEach((button) => {
+      button.addEventListener("click", () => {
+        copyText(button.dataset.copy);
+      });
+    });
+
+    const menuToggle = $("#menuToggle");
+    const mobileMenu = $("#mobileMenu");
+
+    menuToggle.addEventListener("click", () => {
+      const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", String(!expanded));
+      mobileMenu.hidden = expanded;
+    });
+
+    $$("#mobileMenu a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.hidden = true;
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    $("#year").textContent = new Date().getFullYear();
+
+    renderLedger();
+    renderProtocol();
+
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+  </script>
 </body>
 </html>
